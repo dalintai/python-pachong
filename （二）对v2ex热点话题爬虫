@@ -1,0 +1,45 @@
+说明：
+  1.v2ex的html标签与之前有些不同，在for循环中，有两种方式
+    方式一：
+      直接用标题前面的a标签与后面的class，示例：for c in soup.find_all("a",class_="topic-link"):
+    方式二：
+      用span标签与class，它是a标签的上级（博客推荐），示例：for c in soup.find_all("span",class_="item_title"):
+      
+  2.同时for循环中，class后面要加_，具体方式参考博客：https://www.cnblogs.com/liuqimeng/articles/10901989.html
+    博客摘要：
+        三、单末尾下划线 var_
+        有时候，一个变量的最合适的名称已经被一个关键字所占用。 因此，像class或def这样的名称不能用作Python中的变量名称。 在这种情况下，你可以附加一个下划线来解决命名冲突：
+        >>> def make_object(name, class):
+        SyntaxError: "invalid syntax"
+        >>> def make_object(name, class_):
+        ...    pass
+      总之，单个末尾下划线（后缀）是一个约定，用来避免与Python关键字产生命名冲突。 PEP 8解释了这个约定。
+      
+========================
+html代码如下：
+    <span class="item_title">
+        <a href="/t/641318#reply0" class="topic-link">使用区块链技术，成立绿十字会是否可行？
+        </a>
+    </span>
+
+
+
+
+# coding:utf-8
+import requests
+from bs4 import BeautifulSoup
+def pachong2():
+    u = "https://www.v2ex.com/"
+    r = requests.get(url=u)
+    soup = BeautifulSoup(r.text,"html.parser")
+    
+    #class_遍历所有的class=item_hot_topic_title的span。
+    #注意是class_，不是class，因为class是python的关键字，所以后面要加个尾巴，防止冲突
+    #for c in soup.find_all("span",class_="item_title"):这样也是可以的，主要看html样式
+    for c in soup.find_all("a",class_="topic-link"):
+        print(c.text)
+    print(r.status_code)
+    #print(soup.prettify())
+
+if __name__=="__main__":
+    pachong2()
