@@ -1,5 +1,18 @@
 说明：
  1.使用bs4库中的beautfulsoup方法进行对html样式进行解析识别
+ 2.bs4的beautfulsoup使用方法如下：
+ 
+      from bs4 import BeautifulSoup
+      soup = BeautifulSoup("<html>A Html Text</html>", "html.parser")
+
+　　两个参数：第一个参数是要解析的html文本，第二个参数是使用那种解析器，对于HTML来讲就是html.parser，这个是bs4自带的解析器。
+  格式化输出
+
+soup.prettify()  # prettify 有括号和没括号都可以
+
+
+ 
+============================================== 
  
 以下是html页面的代码：
 
@@ -14,6 +27,7 @@
 
 # coding:utf-8
 import requests
+
 #这个库是爬虫常用库之一，主要是用来对html标签进行解析的。
 #安装参考博客：https://blog.csdn.net/Bibabu135766/article/details/81662981
 #方法一：pip3 install Beautifulsoup4 
@@ -32,6 +46,8 @@ def pachong():
     for c in soup.find_all('h4'):
         # 打印出h4的text属性
         print(c.text)
+    print("响应输出：",r.text)
+    print("解析格式输出：",soup.prettify())
 if __name__=="__main__":
     pachong()
    
