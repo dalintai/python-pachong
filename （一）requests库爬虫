@@ -1,9 +1,39 @@
+说明：
+ 1.使用bs4库中的beautfulsoup方法进行对html样式进行解析识别
+ 
+以下是html页面的代码：
+
+<div class="col-md-3 col-sm-6">
+  <div class="servive-block-in servive-block-colored servive-block-grey">
+    <h4>性能测试从入门到精通班</h4><div><i class="icon-rocket"></i>
+  </div>
+  <p>2017年09月23日开课，为期3个月</p>
+</div>
+
+
+
 # coding:utf-8
 import requests
-def jd_():
- u ="https://item.jd.hk/1963903140.html"
- 
-     
+#这个库是爬虫常用库之一，主要是用来对html标签进行解析的。
+#安装参考博客：https://blog.csdn.net/Bibabu135766/article/details/81662981
+#方法一：pip3 install Beautifulsoup4 
+#方法二：①进入官网下载压缩包：https://beautifulsoup.readthedocs.io/zh_CN/v4.4.0/#id8 官网下载链接
+#      ②将压缩包解压至python文件中,进入解压文件后输入指令（前面的python不可缺少）：python setup.py install
+from bs4 import BeautifulSoup
+
+def pachong():
+    u = 'http://www.itest.info/courses' # 定义被抓取页面的url
+    r = requests.get(url=u)
+    
+    # 获取被抓取页面的html代码，并使用html.parser来实例化BeautifulSoup，属于固定套路
+    soup = BeautifulSoup(r.text, 'html.parser')
+    
+    # 遍历页面上所有的h4
+    for c in soup.find_all('h4'):
+        # 打印出h4的text属性
+        print(c.text)
+if __name__=="__main__":
+    pachong()
    
 
 
