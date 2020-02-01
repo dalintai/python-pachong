@@ -1,0 +1,22 @@
+注意：
+  在直接爬去知乎热门的时候，会报400，需要在头部中添加浏览器信息，也就是User-Agent，添加后正常爬取
+
+
+# coding:utf-8
+import requests
+from bs4 import BeautifulSoup
+def zhihuremen():
+    u = "https://www.zhihu.com/explore#collection"
+    head = {
+        "User-Agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:72.0) Gecko/20100101 Firefox/72.0"
+
+    }
+    r = requests.get(url=u,headers=head)
+    soup = BeautifulSoup(r.text,"html.parser")
+    for a in soup.find_all("a",class_="ExploreSpecialCard-title"):
+        print(a.text)
+    print(r.status_code)
+    print(soup.prettify())
+
+if __name__=="__main__":
+    zhihuremen()
