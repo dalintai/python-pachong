@@ -1,0 +1,60 @@
+说明：
+  在对小说网爬虫的时候，发现爬下来文字全是乱码，然后进行一下操作：
+    1.对响应的请求先进行encoding = "utf-8"转码，但是并无直接效果
+    
+ 解决：
+  根据博客上面发现，需要对网页源代码的编码格式进行一定的了解。
+            参考博客：https://blog.csdn.net/after_you/article/details/70256438
+                     https://blog.csdn.net/after_you/article/details/70256438
+                     
+  1.所以一定要知道网页源代码的编码格式，gbk与gb2312都可以正常显示文本，但是utf-8则显示的乱码
+      *现在网页基本都是utf-8的，gbk跟gb2312都比较老
+  
+  源代码如下：
+<!DOCTYPE html>
+<html>
+<head>
+#charset=gbk说明它的编码就是gbk
+<meta http-equiv="Content-Type" content="text/html; charset=gbk" />
+
+<title>第一章 他叫白小纯_一念永恒_修真小说_笔趣阁</title>
+
+  
+  
+  
+  错误代码如下：
+  # -*- coding:UTF-8 -*-
+import requests
+def c():
+    head = {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:72.0) Gecko/20100101 Firefox/72.0"
+
+    }
+    target = 'http://www.biqukan.com/1_1094/5403177.html'
+    r = requests.get(url=target, headers=head)
+    #编码无效
+    r.encoding = "utf-8"
+    print(r.text)
+if __name__ == '__main__':
+    c()
+  
+  
+  ========================
+  正确代码：
+  
+  
+  # -*- coding:UTF-8 -*-
+import requests
+def c():
+    head = {
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:72.0) Gecko/20100101 Firefox/72.0"
+
+    }
+    target = 'http://www.biqukan.com/1_1094/5403177.html'
+    req = requests.get(url=target, headers=head)
+    #这两种编码都可以，但是utf-8不行
+    req.encoding = "gb2312"
+    #req.encoding = "gbk"
+    print(req.text)
+if __name__ == '__main__':
+    c()
