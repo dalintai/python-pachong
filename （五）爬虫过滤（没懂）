@@ -1,0 +1,39 @@
+说明：
+  存在问题：用pycharm对小说爬取的时候是无法爬取正文，但是直接用终端运行的时候，就可以显示正文，应该是跟编译器有很大关系。
+  
+  原本以为懂了，但是好像还没懂
+  
+  
+# coding:utf-8
+import requests
+from bs4 import BeautifulSoup
+def paxiaopshuo():
+  u = ""
+  r = requests.get(url=u)
+  r.encoding = "gb2312"
+  soup = Beautiful(r.text,"html.parser")
+  
+  
+  
+  
+  # coding:utf-8
+import requests
+from bs4 import BeautifulSoup
+def xiaoshuopachong():
+    u = "https://www.biqukan.com/1_1094/5403177.html"
+
+    r = requests.get(url=u)
+    r.encoding = "gbk"
+    print(r.status_code)
+    print(r.text)
+    soup = BeautifulSoup(r.text,"html.parser")
+    #for i in soup.find_all("div",id="content"):
+    for a in soup.find_all('div', class_ = 'showtxt'):
+        #i.encoding = "gbk"
+        d = a
+        print(d[0].text.replace('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;',''))
+        # c = texts[0]
+        # print(c.text)
+
+if __name__=="__main__":
+    xiaoshuopachong()
