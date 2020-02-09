@@ -3,17 +3,9 @@
   
   原本以为懂了，但是好像还没懂
   
+  主要是用replace方法。
   
-# coding:utf-8
-import requests
-from bs4 import BeautifulSoup
-def paxiaopshuo():
-  u = ""
-  r = requests.get(url=u)
-  r.encoding = "gb2312"
-  soup = Beautiful(r.text,"html.parser")
-  
-  
+   
   
   
   # coding:utf-8
@@ -31,6 +23,7 @@ def xiaoshuopachong():
     for a in soup.find_all('div', class_ = 'showtxt'):
         #i.encoding = "gbk"
         d = a
+        #使用replace来进行过滤空格
         print(d[0].text.replace('&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;',''))
         # c = texts[0]
         # print(c.text)
