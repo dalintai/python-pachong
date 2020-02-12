@@ -1,1 +1,39 @@
+说明：对有道词典翻译进行测试，其实原理上还是接口测试
+  1.以下有个注意点就是url需要选择正确，否则会自动重定向，然后就会失败，在尝试直接访问后发生了301永久重定向
+  2.在请求错误的URL后，响应会返回errorCode	50，但实际我们请求这个网址后，确实也是显示这个响应,所以下次可以注意下
+  *3.同时在多版本测试的时候，当请求中data跟json有极大的区别，一定要注意
 
+
+# coding:utf-8
+import requests
+import json
+def youdao():
+    #u = "http://fanyi.youdao.com/translate?smartresult=dict&smartresult=rule"
+    u = "http://fanyi.youdao.com/translate?smartresult=dict&smartresult=rule"
+    #head = {"Content-Type": "application/x-www-form-urlencoded; charset=UTF-8"}
+    datas = {
+    
+        #这个就是需要翻译的内容，我们测试输入的内容
+        "i":"test data",
+        "from":"AUTO",
+        "to":"AUTO",
+        "smartresult":"dict",
+        "client":"fanyideskweb",
+        "salt":15815044213035,
+        "sign":"52dcd8e11a3b66b7c32edade24a4af5b",
+        "ts":1581504421303,
+        "bv":"99720a29b011974f39b7d0d402588939",
+        "doctype":"json",
+        "version":"2.1",
+        "keyfrom":"fanyi.web",
+        "action":"FY_BY_REALTlME"
+    }
+    
+    #这个请求中，一定要用data，如果是json就会报错，这个一定要注意下
+    r = requests.post(url=u,data=datas)
+    r.encoding = "UTF-8"
+    print(r.json())
+    print(r.text)
+
+if __name__=="__main__":
+    youdao()
