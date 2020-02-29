@@ -1,0 +1,35 @@
+说明：
+  主要通过proxies方式进行设置代理，以下是官方使用手册说明：
+    如果需要使用代理，你可以通过为任意请求方法提供 proxies 参数来配置单个请求:
+      import requests
+      proxies = {
+        "http": "http://10.10.1.10:3128",
+        "https": "http://10.10.1.10:1080",
+      }
+      requests.get("http://example.org", proxies=proxies)
+      
+      注意：
+        测试主要用西刺网站的ip，但是可用性相当的少，所以这也是个很大的问题
+        
+=======================================
+以下是demo代码
+=======================================
+
+# coding:utf-8
+import requests
+def ipdizhi():
+    u = "http://myip.kkcha.com"
+
+    proxie = {'http':'http://180.139.114.177:8118'}
+    head = {
+            "User-Agent":"Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:68.0) Gecko/20100101 Firefox/68.0"
+        }
+
+    #r = requests.get('http://myip.kkcha.com',proxies=proxie)
+    r = requests.get(url=u,proxies=proxie)
+    r.encoding = "utf-8"
+    print(r.status_code)
+    print(r.text)
+
+if __name__=="__main__":
+    ipdizhi()
