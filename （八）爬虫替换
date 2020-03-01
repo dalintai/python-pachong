@@ -1,0 +1,73 @@
+说明：
+  过滤函数：replace()
+  使用方法：
+      title = "img name 。end，six  ?"
+
+      cx = title.replace(" ", "_").replace("，", "_").replace("。", "_")
+    print(cx)
+    结果:
+  img_name__end_six__?
+  
+  ===============================================
+  解释：
+        str.replace("需要替换的字符","需要替换成的字符，一般可为空格")
+     说明：还可以进行多个格式替换   
+        str.replace("需要替换的字符","需要替换成的字符，一般可为空格").replace("需要替换的字符2","需要替换成的字符，一般可为空格2")
+  ===============================================
+  
+  我们对西刺代理网站进行爬虫操作，教程中的代码较为繁琐，虽然可以成功，但是还是会有不理解的地方，然后自己重新写了一遍，但是还是会出现过滤的问题
+  以下是代理前端代码：
+            <tr class="odd">
+            <td class="country"><img src="//fs.xicidaili.com/images/flag/cn.png" alt="Cn"></td>
+            <td>218.73.130.59</td>
+            <td>6675</td>
+            <td>浙江温州</td>
+            <td class="country">高匿</td>
+            <td>socks4/5</td>
+              <td>1977天</td>
+            <td>大约 2 年</td>
+          </tr>
+          
+      解析：
+            可以看出，ip与端口在tr的td里面，所以以下是爬取思路：
+                1.首先访问接口，确保可以获取完整的text数据
+                2.然后我们先爬取tr的所有内容
+                3.再対tr里面的td进行爬取
+                4.最后清洗
+      
+      不足：
+          1.因为在使用replace替换时，发现只能替换固定的元素，对于内容不同的数据无法直接替换
+          考虑：
+              1.是否可以通过正则，或者其他方式进行替换
+              2.教程上的代码是新建一个列表，然后将爬取到的td重新写入列表，然后再输出列表中想要的数据，这个还没完全理解
+                
+                
+以下是代码：
+
+
+# coding:utf-8
+import requests
+from bs4 import BeautifulSoup
+def xici():
+    u = "https://www.xicidaili.com/"
+    head = {
+        "User-Agent":"Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:68.0) Gecko/20100101 Firefox/68.0"
+    }
+    r = requests.get(url=u,headers=head)
+    print(r.status_code)
+    #print(r.text)
+    
+    #首先使用BeautifulSoup对整个text进行爬取
+    soup = BeautifulSoup(r.text, "html.parser")
+    #然后第一个循环对text中的tr进行爬取
+    for tr in soup.find_all("tr"):
+        #可以验证下是否正确
+        #print(tr.text)
+        #然后第二个循环对tr中在进行爬取td元素
+        for td in tr.find_all("td"):
+            #最后输出的时候进行过滤
+            print(td.text.replace("大约 2 年","").replace("高匿",""))
+            
+if __name__=="__main__":
+    xici()            
+                
