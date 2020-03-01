@@ -1,7 +1,13 @@
 说明：
-    参考博客：https://www.jb51.net/article/165828.htm
-    有些循环后的数据可以先放在列表中，方便后面下一个for循环使用
-    
+    1.for中的字符串存到列表：
+    	参考博客：https://www.jb51.net/article/165828.htm
+    	有些循环后的数据可以先放在列表中，方便后面下一个for循环使用
+    2.format字符串格式化：
+    	参考博客：https://www.jianshu.com/p/82b89931d455
+	教程上的使用，实际上未使用到：
+		url = "http://xicidaili/nn/{}".format(range(1.10))
+		nn后面跟的就是路径页数
+    	
     
     1.单个字符串用for循环添加到列表中：
 	
