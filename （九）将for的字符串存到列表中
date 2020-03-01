@@ -1,0 +1,44 @@
+说明：
+    参考博客：https://www.jb51.net/article/165828.htm
+    有些循环后的数据可以先放在列表中，方便后面下一个for循环使用
+    
+    
+    1.单个字符串用for循环添加到列表中：
+	
+# 把L1中的字符串添加到列表alist里面
+L1 = 'MJlifeBlog'
+alist = []
+# 可以用forin来迭代L1并保存值到x变量里头即可。
+# 接着在for循环里边用append方法即可把解析到的单个字符添加到列表了。
+for x in L1:
+  alist.append(x)
+print(alist)
+
+2.多个字符串用for循环添加到列表中：
+	
+# 如果需要把多个字符串添加到列表里面就需要另一方法:
+# for循环中使用zip()便能够同时对多个字符串进行迭代.
+L2 = 'ABCDEFG'
+L3 = 'abcdef'
+blist = []
+for m,n in zip(L2,L3):
+  blist.append(m)
+  blist.append(n)
+print(blist)
+
+3.如果想把两个字典的key()或者values(),分别对应输出到别表中可以用同样的方法：
+
+	
+# 如果需要把多个字符串添加到列表里面就需要另一方法:
+# for循环中使用zip()便能够同时对多个字符串进行迭代.
+L2 = {'1':'A','2':'B','3':'C','4':'D'}
+L3 = {'5':'a','6':'b','7':'c','8':'d'}
+blist = []
+for m,n in zip(L2.values(),L3.values()):
+  blist.append(m)
+  blist.append(n)
+print('字典L1：', L2)
+print('字典L2：', L3)
+print('字典L1的值对应字典L2的值输出：',blist)
+
+
