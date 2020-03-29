@@ -1,5 +1,6 @@
 一、截取
 格式：字符串[开始位置:结束位置:间隔位置]
+
 以下是代码说明：
 strs = ["ABCDEFG"]
 print("截取1到3位的字符:" + strs[:3])
@@ -18,3 +19,82 @@ print("截取第三位数字符："+strs[2])
 print("截取倒数第3位与倒数第1位字符："+strs[-3:-1:])
 
 print("逆序截取字符："+strs[:-5:-3])
+
+
+二、替换
+格式：字符串.replace("被替换的内容","替换后的内容")
+
+str = “abcdefg”
+#单个内容替换
+print(str.replace("c","b"))
+
+#字符串替换
+print(str.replace("c","bbbb"))
+
+#替换成空格
+print(str.replace("c"," "))
+
+
+三、查找
+方法一：
+  格式：字符串.find("需要查找的内容",["开始位置","结束位置"])
+        说明：
+            查找成功后会返回出查找的位置，如果失败则会返回-1
+
+
+  str = "abcdefg"
+  #查找str中b的位置
+  print("查到的位置：",str.find("b"))
+  查到的位置： 1
+
+  #查到从0开始到3中的b的位置
+  print("查到的位置：",str.find("b",0,3))
+  查到的位置： 1
+
+  #查到从3开始到5中的b的位置
+  print("查到的位置：",str.find("b",3,5))
+  查到的位置： -1
+
+方法二：
+  格式：字符串.index("需要查找的内容",["开始位置","结束位置"])
+       说明：
+          index的使用方式与find是一样的，唯一不同的就是如果使用index如果没有查询到的会，会直接抛出异常，而不是-1
+
+    str = "abcdefg"
+  #查找str中b的位置
+  print("查到的位置：",str.index("b"))
+  查到的位置： 1
+
+  #查到从0开始到3中的b的位置
+  print("查到的位置：",str.index("b",0,3))
+  查到的位置： 1
+
+  #查到从3开始到5中的b的位置
+  print("查到的位置：",str.index("b",3,5))
+  ValueError: substring not found
+
+四、分割
+格式：字符串.split("分隔符"，分割次数)
+
+str = "abcdasfdxbjnadshjkladfsiuyadefsghjkadfsbjkdsfvjhhdfefg"
+#按照"b"
+print("按照b进行分割：",str.split("b"))
+结果：
+按照b进行分割： ['a', 'cdasfdx', 'jnadshjkladfsiuyadefsghjkadfs', 'jkdsfvjhhdfefg']
+
+#按照"b"进行分割一次
+print("按照b进行分割：",str.split("b",1))
+结果：
+按照b进行分割： ['a', 'cdasfdxbjnadshjkladfsiuyadefsghjkadfsbjkdsfvjhhdfefg']
+
+
+
+
+
+
+
+
+
+
+
+
