@@ -1,1 +1,27 @@
+说明：csv模块是python自带的，不需要安装，然后就是数据写入csv
+     1.在进行打开文件写入的时候，文件需要在与脚本在同一目录下
+     2.如果没有这个文件，将会自动新建这个文件
 
+代码如下：
+
+import csv
+
+#打开一个csv的文件，然后进行写入操作
+#建议newfile的值为空，否则每次写入数据后会出来一行空白行
+#mac的环境下，有两种方式进行打开文件
+csvfile = open("/Volumes/脚本/python代码/test代码/3.csv","w",newline=" ")
+#csvfile = open("2.csv","w",newline=" ")
+
+#将文件加载到csv对象中
+writer = csv.writer(csvfile)
+#写入一行数据
+writer.writerow(["姓名","年龄","电话"])
+#多行数据写入
+data = [
+    ("小p","18","18859485744"),
+    ("小c","45","18374658909"),
+]
+
+writer.writerow(data)
+#关闭csvfile文件
+csvfile.close()
