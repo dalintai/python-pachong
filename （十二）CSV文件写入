@@ -28,7 +28,7 @@ writer.writerow(data)
 csvfile.close()
 
 
-二、读取
+二、读取全部数据
 说明：通过reader = csv.reader(csvfile) 或者 reader = csv.DictReader(csvfile)来对csv文件中的数据进行读取
      1.reader = csv.DictReader(csvfile)读取出来的文件是以字典的形式展示
      2.reader = csv.reader(csvfile)读取出来的文件是以列表的形式展示
@@ -43,3 +43,22 @@ csvfile = open("/Volumes/脚本/python代码/test代码/3.csv","r")
 reader = csv.DictReader(csvfile)
 rows = [row for row in reader]
 print(rows)
+
+
+
+三、读取某一行数据
+
+
+import csv
+csvfile = open("/Volumes/脚本/python代码/test代码/3.csv","r")
+reader = csv.DictReader(csvfile)
+# reader = csv.reader(csvfile)
+# readers = csv.DictReader(csvfile)
+# #rows = [row for row in reader]
+# rowd = [row for row in readers]
+#print(rows)
+for row in reader:
+    if row['姓名'] == '18859485744':
+        print(row)
+
+
