@@ -25,3 +25,14 @@ data = [
 writer.writerow(data)
 #关闭csvfile文件
 csvfile.close()
+
+
+
+
+import csv
+csvfile = open("/Volumes/脚本/python代码/test代码/3.csv","r")
+writer = csv.writer(csvfile)
+#reader = csv.reader(csvfile)
+reader = csv.DictReader(csvfile)
+rows = [row for row in reader]
+print(rows)
