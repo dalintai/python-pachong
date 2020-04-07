@@ -1,3 +1,4 @@
+一、写入
 说明：csv模块是python自带的，不需要安装，然后就是数据写入csv
      1.在进行打开文件写入的时候，文件需要在与脚本在同一目录下
      2.如果没有这个文件，将会自动新建这个文件
@@ -27,7 +28,13 @@ writer.writerow(data)
 csvfile.close()
 
 
-
+二、读取
+说明：通过reader = csv.reader(csvfile) 或者 reader = csv.DictReader(csvfile)来对csv文件中的数据进行读取
+     1.reader = csv.DictReader(csvfile)读取出来的文件是以字典的形式展示
+     2.reader = csv.reader(csvfile)读取出来的文件是以列表的形式展示
+     
+     
+     未解决：row的详细用法
 
 import csv
 csvfile = open("/Volumes/脚本/python代码/test代码/3.csv","r")
