@@ -48,6 +48,12 @@ print(rows)
 
 三、读取某一行数据
 
+=====================
+
+测试未通过，只能先记录下示例代码
+
+=====================
+
 
 import csv
 csvfile = open("/Volumes/脚本/python代码/test代码/3.csv","r")
