@@ -11,7 +11,40 @@
 
   说明：
     docx库官方文档：https://python-docx.readthedocs.io/en/latest/
-
+      *paragraph:段落的意思
+      *True :真
+    整体思路：
+        1.创建一个word对象
+          document = Document()
+        2.分别使用add_heading()来创建一个标题，格式：
+          document.add_heading("标题名称"，0（标题格式0~3）)
+            示例：
+              document.add_heading("标题名称"，0)
+        3.使用add_paragraph()来创建一个正文，然后可以设置是否加粗，格式/示例：
+          document.add_paragraph("这是正文").bold = True
+        4.可以对文字进行设置加粗，斜体操作，示例：
+          document.add_paragraph("加粗").bold = True
+          document.add_paragraph("斜体").italic = True
+            备注：
+                在底下代码实现时，将正文加粗用来两种方式：
+                    方式一：
+                        document.add_paragraph("加粗").bold = True
+                    方式二：
+                        document.add_paragraph("加粗")
+                        runs[0].bold = True
+                        
+                        
+        5.使用add_picture添加图片示例：
+          document.add_picture("图片路径",width = Inches(1.25))
+          
+        6.使用add_table(rows = 行数,cols = 列数)添加表格：
+          document.add_table(rows= 1,cols = 3)
+          
+        7.保存文件
+          documen.add_page_break()
+          document.save("test.docx")
+          
+    
 from docx import Doeument
 #也可以直接应用全部docx的方法
 #from docx import *
@@ -24,4 +57,75 @@ document = Document()
 #添加标题，“0”代表了标题类型，标题一种有4种，在word工具中可以看到它标题有4个类型
 document.add_heading("python 爬虫",0)
 
-p = 
+#添加正文
+p = document.add_paragraph("python爬虫开发的正文段落显示")
+#将正文加粗显示
+p.runs[0].bold = Ture
+#对“数据存储”进行加粗显示
+p.add_run("数据存储").bold = True
+#添加正常显示的正文
+p.add_run("正常显示的正文")
+#将“斜体显示”进行斜体显示
+p.add_run("斜体显示").italic = True
+
+#引用显示
+document.add_paragraph("样式显示为引用", style = "IntenseQuote")
+document.add_paragraph(
+    "项目符号1是黑色的点：·",style = "ListBullet"
+    )
+document.add_paragraph(
+    "项目符号2是数字：1.",style = "ListNumber"
+    )
+    
+#添加图片    
+document.add_picture = ("图片路径",width = Inches(1.25) )
+
+#添加表格
+#添加1行3列的表格
+table = document.add_table(rows = 1,cols = 3)
+#cells:单元格
+hdr_cells = table.rows[0].cells
+#对单元格内容进行输入
+hdr.cells[0].test = "Qty"
+hdr.cells[1].text = "ID"
+hdr.cells[2].text = "Desc"
+
+#添加了一个循环对表格进行写入
+for item in range(2):
+    row_cells[0].text = "a"
+    row_cells[1].text = "b"
+    row_cells[2].text = "c"
+
+#保存文件
+documen.add_page_break()
+#将文件命名成“test.docx”进行保存
+document.save("test.docx")
+
+
+=================================
+文档效果
+=================================
+python爬虫
+python爬虫开发数据存储word-存储示例
+样式-明显引用
+项目符号1
+1.项目符号2
+
+Qty	ID	Desc
+a	b	c
+a	b	c
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
