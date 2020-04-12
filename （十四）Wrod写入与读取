@@ -1,0 +1,27 @@
+一、安装docx库
+  pip install python-docx
+  安装完成后进行测试是否成功：
+    import docx
+    docx.__version__
+    显示：
+    '0.8.10
+    说明安装成功
+    
+二、 将数据写入word
+
+  说明：
+    docx库官方文档：https://python-docx.readthedocs.io/en/latest/
+
+from docx import Doeument
+#也可以直接应用全部docx的方法
+#from docx import *
+#可以参考官方文档：https://python-docx.readthedocs.io/en/latest/
+#这个库也是一定要跟docv import Document一起导入的
+from docx.shared import Inches
+
+#创建一个对象，使用Document()方法
+document = Document()
+#添加标题，“0”代表了标题类型，标题一种有4种，在word工具中可以看到它标题有4个类型
+document.add_heading("python 爬虫",0)
+
+p = 
