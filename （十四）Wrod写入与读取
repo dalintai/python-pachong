@@ -91,6 +91,7 @@ hdr.cells[1].text = "ID"
 hdr.cells[2].text = "Desc"
 
 #添加了一个循环对表格进行写入
+#range就是进行遍历循环，0~2，参考使用博客：https://blog.csdn.net/william_hehe/article/details/83420178
 for item in range(2):
     row_cells[0].text = "a"
     row_cells[1].text = "b"
@@ -117,11 +118,18 @@ a	b	c
 
 
 
+三、读取word数据
 
 
-
-
-
+import docx
+xinliebiao = []
+doc = docx.Document("E:\\Selenium脚本\\爬虫\\test5.docx")
+#使用paragraphs()来获取word中的所有内容
+paras = doc.paragraphs
+for p in paras:
+    xinliebiao.append(p.text)
+    print(p.text)
+print(xinliebiao)    
 
 
 
