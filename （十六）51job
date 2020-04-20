@@ -5,4 +5,38 @@
   
   
 二、获取城市编号
-  说明：我们通过抓包可以找到城市的编码
+  说明：我们通过抓包可以找到城市的编码，然后进行获取响应
+  代码如下：
+  
+  ===========================
+  技术功能点：
+  1.使用随机数生成城市编码
+      random.randint(200,220)
+  2.对字符类型进行转换
+      int -> str : str()
+      str -> int : int()
+  # coding:utf-8
+import requests
+import random
+u = "https://search.51job.com/list/0"
+# for d in range(10000,10900):
+#     print(d)
+
+#首先使用随机数生成b
+b = random.randint(200,220)
+#因为b是int类型，在url拼接中无法使用，所以我们需要进行转换
+#就是新赋予一个变量，使用str(b)，不能直接对上面的b进行转换
+b = str(b)
+print(b)
+#print(str(c))
+#c = b
+k = "020000"
+
+path = "00,000000,0000,00,9,99,python,2,1.html?lang=c&stype=&postchannel=0000&workyear=99&cotype=99&degreefrom=99&jobterm=99&companysize=99&providesalary=99&lonlat=0%2C0&radius=-1&ord_field=0&confirmdate=9&fromType=&dibiaoid=0&address=&line=&specialarea=00&from=&welfare="
+r = requests.get(url=u+b+path)
+
+#发现返回请求带有乱码，通过查看前端源码，发现类型是gbk
+r.encoding = "gbk"
+print(r.url)
+print(r.status_code)
+print(r.text)
