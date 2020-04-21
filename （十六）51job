@@ -40,3 +40,49 @@ r.encoding = "gbk"
 print(r.url)
 print(r.status_code)
 print(r.text)
+
+
+
+===================================
+4-22
+更新点：
+  1.添加了一个BeautifulSoup开始并没什么东西
+  
+
+# coding:utf-8
+import  requests
+from bs4 import BeautifulSoup
+import re,math
+headers = {
+    "User-Agent":"Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:68.0) Gecko/20100101 Firefox/68.0",
+    "Host":"www.51job.com",
+    "Upgrade-Insecure-Requests":1
+
+}
+def get_pageName(city_code,keyword):
+    url = "https://search.51job.com/list/0"+str(200)+"00,000000,0000,00,9,99"+\
+          "python"\
+          +",2,1.html"
+    r = requests(url,headers=headers)
+    r.encoding = "gbk"
+    soup = BeautifulSoup(r.text,"html5lib")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
